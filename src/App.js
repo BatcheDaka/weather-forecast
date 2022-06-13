@@ -26,17 +26,14 @@ function App() {
         .then((response) => {
 
           setFirstDay(response.data.list[0]);
-          setSecondDay(response.data.list[1]);
-          setThirdDay(response.data.list[2]);
-          setFourthDay(response.data.list[3]);
-          setFifthDay(response.data.list[4]);
+          setSecondDay(response.data.list[8]);
+          setThirdDay(response.data.list[16]);
+          setFourthDay(response.data.list[24]);
+          setFifthDay(response.data.list[32]);
         })
-        .catch(err => alert(err.message))}
-let today = new Date();
-const daysInWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-let dayOrder = today.getDay();
-let day1 = daysInWeek[dayOrder];
-console.log(day1);
+        .catch(err => alert(err.message))
+    }
+
   }
   return (
     <div className="App">
@@ -49,7 +46,7 @@ console.log(day1);
           placeholder='Enter location'
           type="text" />
       </div>
-
+      <h2>Current conditions</h2>
       <div className="container">
 
         <div className="header">
@@ -76,7 +73,7 @@ console.log(day1);
             {data.weather ? <p>{data.weather[0].main}</p> : null}
           </div>
         </div>
-      </div>
+     
 
       {data.name !== undefined &&
         <div className="main">
@@ -98,11 +95,16 @@ console.log(day1);
           </div>
         </div>
       }
+       </div>
+       <h2>5 days Forecast</h2>
       <div id="weatherContainer">
 
-
+    
         <div className="forecast">
-          <p className="weather" id="day1"></p>
+
+        {firstDay.dt ? <p className="weather" id="day1">{new Date(firstDay.dt * 1000).toLocaleString("en-GB", {
+              weekday: "long",
+            })}</p> : null}
           <div className="image-icon">
             {firstDay.weather ?
               <img
@@ -117,7 +119,9 @@ console.log(day1);
         </div>
 
         <div className="forecast">
-          <p className="weather" id="day2"></p>
+        {secondDay.dt ? <p className="weather" id="day2">{new Date(secondDay.dt * 1000).toLocaleString("en-GB", {
+              weekday: "long",
+            })}</p> : null}
           <div className="image-icon">
             {secondDay.weather ?
               <img
@@ -132,7 +136,9 @@ console.log(day1);
         </div>
 
         <div className="forecast">
-          <p className="weather" id="day3"></p>
+        {thirdDay.dt ? <p className="weather" id="day1">{new Date(thirdDay.dt * 1000).toLocaleString("en-GB", {
+              weekday: "long",
+            })}</p> : null}
           <div className="image-icon">
             {thirdDay.weather ?
               <img
@@ -147,7 +153,9 @@ console.log(day1);
         </div>
 
         <div className="forecast">
-          <p className="weather" id="day4"></p>
+        {fourthDay.dt ? <p className="weather" id="day4">{new Date(fourthDay.dt * 1000).toLocaleString("en-GB", {
+              weekday: "long",
+            })}</p> : null}
           <div className="image-icon">
             {fourthDay.weather ?
               <img
@@ -162,7 +170,9 @@ console.log(day1);
         </div>
 
         <div className="forecast">
-          <p className="weather" id="day5"></p>
+        {fifthDay.dt ? <p className="weather" id="day5">{new Date(fifthDay.dt * 1000).toLocaleString("en-GB", {
+              weekday: "long",
+            })}</p> : null}
           <div className="image-icon">
             {fifthDay.weather ?
               <img
